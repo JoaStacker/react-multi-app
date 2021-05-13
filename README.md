@@ -6,7 +6,7 @@ It contains: \
   **Mapbox API** \
   **json-server CRUD** \
   **local db.json (fake api) CRUD** \
-  **and more...**\
+  **and more...**
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
