@@ -1,23 +1,26 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import CrudApp from './components/CrudApp'
+import CrudApi from './components/CrudApi'
+import SongSearch from './components/SongSearch'
+import {default as SelectsAnidadosDesafio} from './components/desafios/a-SelectsAnidados';
+import SelectsAnidadosOriginal from './components/SelectAnidados';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Ejercico con React</h1>
+      <hr />
+      <SelectsAnidadosOriginal />
+      <hr />
+      <SelectsAnidadosDesafio/>
+      <hr />
+      <SongSearch />
+      <hr />
+      <CrudApi /> 
+      <hr />
+      <CrudApp /> 
     </div>
   );
 }
