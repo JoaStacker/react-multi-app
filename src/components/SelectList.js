@@ -7,7 +7,8 @@ export const SelectList = ({title, url, handleChange}) => {
     
     console.log("DATOS OBTENIDOS: ", data, error, loading);
 
-    if(!data) return null; //mientras que no haya datos por parte de la peticion fetch no retornar nada.
+    if(data === null) return null; //mientras que no haya datos por parte de la peticion fetch no retornar nada.
+
     if(error){
         return <Message msg={`Error ${error.status}: ${error.statusText}`}/>
     }
@@ -15,10 +16,11 @@ export const SelectList = ({title, url, handleChange}) => {
     let id = `select-${title}`;
     let label = title.charAt(0).toUpperCase() + title.slice(1);
 
+
     const handleSelect = (e) => {
         const selectedIndex = e.target.options.selectedIndex;
         const id = e.target.options[selectedIndex].getAttribute('data-key');
-        if(e.target.id ===  `select-estado`) {
+        if(e.target.id ===  `select-estado` && id !== null) {
             const coords = e.target.options[selectedIndex].getAttribute('data-coords');
             handleChange(id, JSON.parse(coords));
         }else{
@@ -26,12 +28,13 @@ export const SelectList = ({title, url, handleChange}) => {
         }
     }
 
+
     return (
         <>
-        <label htmlFor={id}>{label}</label>
+        <label htmlFor={id}>{label}: </label>
         {loading && <Loader type="elements"/>}
         <select id={id} name={id} onChange={handleSelect}>
-                <option value="">Elije un {title}</option>
+                <option data-key={null}>Elije un {title}</option>
                 {data.provincias && 
                     data.provincias.map(el => ( 
                         <option 

@@ -7,6 +7,11 @@ export const useFetch = (url) => {
     const [loading, setLoading] = useState(null)
 
     useEffect(() => {
+        if(!url) { ///if there's no url provided it means 
+            setData(true)
+            // setError(new Error("Selecciona un estado para mostrar los municipios")) 
+            return
+        }
         const abortController = new AbortController();
         const signal = abortController.signal;
 
