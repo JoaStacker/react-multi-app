@@ -7,12 +7,20 @@ mapboxgl.accessToken = TOKEN;
 
 
 
-function Map({lon, lat}) {
+
+function Map({lon, lat, handleMove}) {
     const mapContainer = useRef(null);
     const map = useRef(null);
     const [mapLon, setMapLon] = useState(lon);
     const [mapLat, setMapLat] = useState(lat);  
-    const [zoom, setZoom] = useState(10);
+    const [zoom, setZoom] = useState(4);
+    
+    //Cuando se renderiza el componente, volar a esa ubicacion
+    useEffect(() => {
+        if (!map.current) return; // only if map is initialized
+        console.log("FLY")
+        map.current.flyTo({center:[lon, lat], zoom: 10});    
+    }, [lon, lat]);
 
     //Initializing map only once.
     useEffect(() => { 
@@ -22,34 +30,43 @@ function Map({lon, lat}) {
             style: 'mapbox://styles/mapbox/streets-v11',// style URL
             center: [mapLon, mapLat],// starting position [mapLon, mapLat]
             zoom: zoom // starting zoom
-        });
-    }, []);
+        }); 
+        
 
-    //Cada vez que se mueva, actualizar en el estado las coordeadas.
-    useEffect(() => {
-        if (!map.current) return; // wait for map to initialize
         map.current.on('move', () => {
-            setMapLon(map.current.getCenter().lng.toFixed(4));
-            setMapLat(map.current.getCenter().lat.toFixed(4));
-            setZoom(map.current.getZoom().toFixed(2));
-        });
-    });
+            console.log("moving", Number(map.current.getCenter().lng.toFixed(4)));
+            let lon = Number(map.current.getCenter().lng.toFixed(4));
+            let lat = Number(map.current.getCenter().lat.toFixed(4));
+            setMapLon(lon)    
+            setMapLat(lat)
+        })
 
-    //Cuando camibien las props, modificar el centro del mapa
-    useEffect(() => {
-        if (!map.current) return; // wait for map to initialize
-        console.log("New longitud and latitude: ", lon, ",", lat)
-        map.current.flyTo({center:[lon, lat]});     
-    }, [lon]);
+    }, []); 
+
+
 
     return (
         <div className="map-view">
             <div className="sidebar">
                 Longitude: {mapLon} | Latitude: {mapLat} | Zoom: {zoom}
-            </div>
+            </div>  
             <div ref={mapContainer} className="map-container"/>
         </div>
     )
 }
 
 export default Map
+
+
+ // useEffect(() => {
+    //     map.current.on('move', () => {
+    //         console.log("Executing move");
+    //         console.log("Center: ", map.current.getCenter());
+    //         console.log(mapLon);
+    //         console.log(mapLat);
+            
+            // setMapLon(map.current.getCenter().lng.toFixed(4));
+            // setMapLat(map.current.getCenter().lat.toFixed(4));
+    //     })
+    // })
+

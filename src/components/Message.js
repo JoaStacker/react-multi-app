@@ -13,7 +13,7 @@ export default function Message ({msg, bgColor}) {
     return(
         <>
             <h2 style={styles}>{msg}</h2>
-            <p dangerouslySetInnerHTML={{__html: "mensaje con dangerouslySetInnerHTML"}} />
+            {/* <p dangerouslySetInnerHTML={{__html: "mensaje con dangerouslySetInnerHTML"}} /> not recommended*/}
         </>
     )
 }

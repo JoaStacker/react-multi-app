@@ -20,7 +20,7 @@ export const helpHttp = () => {
 
         if(!options.body) delete options.body; //no podemos mandar un body vacio o falso en una peticion fetch.
 
-        // console.log(options);
+        console.log(options);
 
         setTimeout(() => controller.abort(), 3000) //si no recibo resupesta luego de 1 segundo, aborto la peticion.
                 

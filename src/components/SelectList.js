@@ -5,7 +5,7 @@ import Message from "./Message";
 export const SelectList = ({title, url, handleChange}) => {
     const {data, error, loading} = useFetch(url) //apenas carga el seect list hace la peticion.
     
-    console.log("DATOS OBTENIDOS: ", data, error, loading);
+    // console.log("DATOS OBTENIDOS: ", data, error, loading);
 
     if(data === null) return null; //mientras que no haya datos por parte de la peticion fetch no retornar nada.
 
@@ -20,7 +20,7 @@ export const SelectList = ({title, url, handleChange}) => {
     const handleSelect = (e) => {
         const selectedIndex = e.target.options.selectedIndex;
         const id = e.target.options[selectedIndex].getAttribute('data-key');
-        if(e.target.id ===  `select-estado` && id !== null) {
+        if(e.target.id ===  `select-state` && id !== null) {
             const coords = e.target.options[selectedIndex].getAttribute('data-coords');
             handleChange(id, JSON.parse(coords));
         }else{
@@ -34,7 +34,7 @@ export const SelectList = ({title, url, handleChange}) => {
         <label htmlFor={id}>{label}: </label>
         {loading && <Loader type="elements"/>}
         <select id={id} name={id} onChange={handleSelect}>
-                <option data-key={null}>Elije un {title}</option>
+                <option data-key={null}>Choose a {title}</option>
                 {data.provincias && 
                     data.provincias.map(el => ( 
                         <option 
