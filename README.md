@@ -1,4 +1,12 @@
-# Getting Started with Create React App
+## Description
+
+This is a multi functionality app that has many examples that you can implement in your own projects. 
+
+It contains: \
+  **Mapbox API** \
+  **json-server CRUD** \
+  **local db.json (fake api) CRUD** \
+  **and more...**
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
