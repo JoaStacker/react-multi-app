@@ -15,5 +15,4 @@ const ModalPortal = ({children, isOpen, closeModal}) => {
     , document.getElementById("modal"))
 }
 
-
 export default ModalPortal
